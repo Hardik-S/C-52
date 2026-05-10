@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
+import { loadStoredJson } from './storage'
 
 // Apps data - easily expandable
 const generateApps = () => {
@@ -49,8 +50,8 @@ function App() {
     setStars(newStars)
     
     // Load saved ritual data
-    const saved = localStorage.getItem('ritualData')
-    if (saved) setRitualData(JSON.parse(saved))
+    const saved = loadStoredJson(localStorage.getItem('ritualData'), {})
+    setRitualData(saved)
   }, [])
 
   const isAppUnlocked = (unlockDate) => {
